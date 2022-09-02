@@ -277,4 +277,5 @@ cython_debug/
 .idea/
 password.txt
 data.json
+data/to_learn.csv
 # End of https://www.toptal.com/developers/gitignore/api/intellij,python
