@@ -38,17 +38,18 @@ def new_card():
         messagebox.showinfo(title="Out of Cards", message="There are no cards left.")
 
 
-
-def turn():
+def turn_card():
     global active_side
     active_side += 1
+    card.itemconfig(card_image, image=[card_front, card_back][active_side % 2])
     card.itemconfig(card_title, text=languages[active_side % 2])
     card.itemconfig(card_word, text=current_card[languages[active_side % 2]])
+    # card.config(bg=BACKGROUND_COLOR, fg="white")
 
 
 try:
     data = pd.read_csv("data/to_learn.csv")
-except FileNotFoundError:
+except (FileNotFoundError, pd.errors.EmptyDataError):
     data = pd.read_csv("data/french_words.csv")
 
 languages = data.columns
@@ -65,12 +66,12 @@ root.config(bg=BACKGROUND_COLOR, padx=50, pady=50)
 card = tk.Canvas(width=800, height=526, highlightthickness=0, bg=BACKGROUND_COLOR)
 card_front = tk.PhotoImage(file="images/card_front.png")
 card_back = tk.PhotoImage(file="images/card_back.png")
-card.create_image(400, 263, image=card_front)
+card_image = card.create_image(400, 263, image=card_front)
 card_title = card.create_text(400, 150, text="title", font=TITLE_FONT)
 card_word = card.create_text(400, 263, text="word", font=WORD_FONT)
 card.grid(row=0, column=0, columnspan=2)
 
-# Buttons
+# -------------------------------------- BUTTONS -------------------------------------- #
 right = tk.PhotoImage(file="images/right.png")
 button_right = tk.Button(image=right, highlightthickness=0, borderwidth=0, command=know_word,
                          activebackground=BACKGROUND_COLOR)
@@ -81,8 +82,9 @@ button_wrong = tk.Button(image=wrong, highlightthickness=0, borderwidth=0, comma
                          activebackground=BACKGROUND_COLOR)
 button_wrong.grid(row=1, column=1)
 
+# Turn card over
 turn_over = tk.PhotoImage(file="images/button_turn-over.png")
-turn = tk.Button(image=turn_over, width=260, height=90, highlightthickness=0, borderwidth=0, command=turn,
+turn = tk.Button(image=turn_over, width=260, height=90, highlightthickness=0, borderwidth=0, command=turn_card,
                  bg=BACKGROUND_COLOR,
                  activebackground=BACKGROUND_COLOR)
 turn.grid(row=2, column=0, columnspan=2)
