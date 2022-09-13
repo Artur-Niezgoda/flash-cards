@@ -9,12 +9,12 @@ The first row must contain names of the languages.
 # 
 When the app starts it displays randomly chosen word in the foreign language.
 <p align="center" width="100%">
-    <img width="33%" src="images/README/flash_card_front.png">
+    <img width="60%" src="./images/README/flash_card_front.png">
 </p>
 In order to see the translation you can click "Turn Over" button:
 
 <p align="center" width="100%">
-    <img width="33%" src="images/README/flash_card_back.png">
+    <img width="60%" src="./images/README/flash_card_back.png">
 </p>
 
 If you know this word, click green (tick symbol) button, otherwise click red 
@@ -23,7 +23,7 @@ the list of words to learn. When all the words have been displayed, the message 
 the list containing words to learn is saved to a new file to_learn.csv. 
 
 <p align="center" width="100%">
-    <img width="33%" src="images/README/flash_card_end.png">
+    <img width="60%" src="./images/README/flash_card_end.png">
 </p>
 
 The next time the program is started
